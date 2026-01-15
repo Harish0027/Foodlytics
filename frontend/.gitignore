@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+
+# cache
+.cache/
+.vite/
+.next/
+
+# env
+.env
+.env.local
