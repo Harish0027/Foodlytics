@@ -1,4 +1,4 @@
-**# Restaurant Order Monitoring Dashboard
+# Restaurant Order Monitoring Dashboard
 
 ## Overview
 
@@ -40,29 +40,31 @@ The solution focuses on **clarity, correctness, scalability, and real‑world ar
 
 ---
 
+## Available Resources
+
+The assessment provides a **pre-built backend service** that exposes REST APIs and WebSocket endpoints required for the dashboard.
+
+* **API Documentation:** [https://assessment-6xdhr.ondigitalocean.app/docs](https://assessment-6xdhr.ondigitalocean.app/docs)
+* **Production Server:** [https://assessment-6xdhr.ondigitalocean.app](https://assessment-6xdhr.ondigitalocean.app)
+
+These services act as the single source of truth for all stores, orders, metrics, and real-time updates. The application strictly consumes these endpoints without modifying or generating custom mock data.
+
+---
+
 ## Tech Stack
 
 ### Frontend
 
 * **React (TypeScript)**
-* Component‑based architecture
+* Component-based architecture
 * Fetch API for REST integration
-* WebSocket API for real‑time updates
+* WebSocket API for real-time updates
 
 ### Backend
 
 * **FastAPI (Python)**
 * Pydantic models for validation
 * Service layer for business logic
-
-### Data Source
-
-* **Provided Mock API & WebSocket Server**
-
-  * REST APIs (pre-configured)
-  * WebSocket for real-time order updates
-
----
 
 ## System Architecture
 
@@ -207,13 +209,13 @@ http://localhost:3000
 
 ---
 
-### Mock API
+### Data Source
 
-The assessment provides a **pre-configured mock API and WebSocket service** that supplies all store, order, and metrics data.
+The assessment provides a **production-like API and WebSocket service**, documented and hosted externally.
 
-The application strictly consumes this data as-is, without modifying or generating custom mock data, ensuring alignment with the intended evaluation setup.
+All store data, order history, metrics, and real-time events are fetched from this service as provided, without altering schemas or generating additional mock data.
 
-(No changes were made to the provided mock data.)
+This design choice ensures the implementation closely mirrors a real-world third-party integration scenario.
 
 ---
 
@@ -263,4 +265,3 @@ The solution is **production‑minded**, easy to reason about, and extensible.
 ---
 
 Thank you for reviewing this submission.
-**
