@@ -50,7 +50,6 @@ export interface StoreMetrics {
     order_count: number;
   };
   error_breakdown: Record<string, number>;
-  time_range?: string;
   timestamp: string;
 }
 

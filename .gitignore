@@ -1,15 +1,41 @@
-# dependencies
-node_modules/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+venv.bak/
+*.sqlite3
+*.db
 
-# build
+# Environment
+.env
+.env.*
+
+# VSCode
+.vscode/
+
+# Node
+node_modules/
+*.log
 dist/
 build/
 
-# cache
-.cache/
-.vite/
-.next/
+# OS
+.DS_Store
+Thumbs.db
 
-# env
-.env
-.env.local
+# Misc
+*.bak
+*.swp
+*.swo
+.idea/
+*.iml
+
+# Ignore frontend build outputs
+Foodlytics/frontend/build/
+Foodlytics/frontend/dist/
+
+# Ignore backend cache
+Foodlytics/backend/__pycache__/

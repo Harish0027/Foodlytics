@@ -18,13 +18,24 @@ import {
   Typography,
 } from '@mui/material';
 import { Search, FilterList } from '@mui/icons-material';
-import { Order } from '../data/mockData';
 
-interface DataTableProps {
-  data: Order[];
+// Local row type for the orders table (avoids importing mock data)
+export interface OrderRow {
+  id: string;
+  orderNumber: string;
+  customerName: string;
+  restaurant: string;
+  items: number;
+  totalAmount: number | string;
+  status: 'Active' | 'Pending' | 'Delivered' | 'Cancelled';
+  orderDate: string;
 }
 
-const statusColors: Record<Order['status'], { bg: string; color: string }> = {
+interface DataTableProps {
+  data: OrderRow[];
+}
+
+const statusColors: Record<OrderRow['status'], { bg: string; color: string }> = {
   Active: { bg: '#10B981', color: '#ffffff' },
   Pending: { bg: '#F59E0B', color: '#ffffff' },
   Delivered: { bg: '#3B82F6', color: '#ffffff' },
@@ -39,7 +50,7 @@ const toNumber = (value: number | string | undefined): number => {
 
 export const DataTable: React.FC<DataTableProps> = ({ data }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<Order['status'] | 'all'>('all');
+  const [statusFilter, setStatusFilter] = useState<OrderRow['status'] | 'all'>('all');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -110,7 +121,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
               <Select
                 value={statusFilter}
                 onChange={(e) => {
-                  setStatusFilter(e.target.value as Order['status'] | 'all');
+                  setStatusFilter(e.target.value as OrderRow['status'] | 'all');
                   setPage(0);
                 }}
                 displayEmpty

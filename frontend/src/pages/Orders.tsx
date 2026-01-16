@@ -28,7 +28,6 @@ import {
   ShoppingCart,
 } from "@mui/icons-material";
 import { OrdersTable } from "../components/OrdersTable";
-import { TimeRangeSelector } from "../components/TimeRangeSelector";
 import { useDashboardStore } from "../store/dashboardStore";
 import {
   LineChart,
@@ -70,11 +69,9 @@ export const Orders: React.FC = () => {
   const {
     orders,
     summary,
-    timeRange,
     loading,
     error,
     fetchDashboardSummary,
-    setTimeRange,
     clearError,
   } = useDashboardStore();
 
@@ -222,11 +219,6 @@ export const Orders: React.FC = () => {
         >
           Track and manage all orders across your restaurant network
         </Typography>
-      </Box>
-
-      {/* Time Range Selector */}
-      <Box sx={{ mb: { xs: 2.5, sm: 3 }, overflowX: "auto" }}>
-        <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
       </Box>
 
       {/* Statistics Cards */}

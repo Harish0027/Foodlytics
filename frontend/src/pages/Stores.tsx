@@ -39,6 +39,7 @@ import {
   Delete,
   FiberManualRecord as Online,
   RadioButtonUnchecked as Offline,
+  LocalFireDepartment as BusyIcon,
   Search,
   FilterList,
   AccessTime as ClockIcon,
@@ -390,7 +391,6 @@ export const Stores: React.FC = () => {
                   sx={{
                     fontSize: { xs: 32, sm: 40 },
                     color: "#10B981",
-                    opacity: 0.2,
                     flexShrink: 0,
                   }}
                 />
@@ -443,6 +443,13 @@ export const Stores: React.FC = () => {
                     {storeStats.busy}
                   </Typography>
                 </Box>
+                <BusyIcon
+                  sx={{
+                    fontSize: { xs: 32, sm: 40 },
+                    color: "#F59E0B",
+                    flexShrink: 0,
+                  }}
+                />
               </Box>
             </CardContent>
           </Card>
@@ -496,7 +503,6 @@ export const Stores: React.FC = () => {
                   sx={{
                     fontSize: { xs: 32, sm: 40 },
                     color: "#EF4444",
-                    opacity: 0.2,
                     flexShrink: 0,
                   }}
                 />

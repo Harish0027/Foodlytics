@@ -48,10 +48,10 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({
 
   const getHealthEmoji = (status: string) => {
     switch(status) {
-      case 'healthy': return '😊';
-      case 'warning': return '😐';
-      case 'critical': return '😟';
-      default: return '❓';
+      case 'healthy': return 'OKK';
+      case 'warning': return 'SOMEThing';
+      case 'critical': return 'BAD';
+      default: return 'UNKNOWN';
     }
   };
 

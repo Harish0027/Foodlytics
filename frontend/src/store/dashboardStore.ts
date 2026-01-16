@@ -79,14 +79,12 @@ interface DashboardState {
   // UI State
   loading: boolean;
   error: string | null;
-  timeRange: string;
 
   // Actions
   fetchDashboardSummary: () => Promise<void>;
   fetchStoreData: (storeId: string) => Promise<void>;
   fetchStoreOrders: (storeId: string) => Promise<void>;
   setSelectedStore: (store: Store | null) => void;
-  setTimeRange: (range: string) => void;
   clearError: () => void;
 }
 
@@ -100,16 +98,12 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
   storeMetrics: null,
   loading: false,
   error: null,
-  timeRange: "24h",
 
   // Actions
   fetchDashboardSummary: async () => {
     set({ loading: true, error: null });
     try {
-      const timeRange = get().timeRange;
-      const response = await axios.get(`${API_URL}/api/dashboard/summary`, {
-        params: { time_range: timeRange },
-      });
+      const response = await axios.get(`${API_URL}/api/dashboard/summary`);
       const data = response.data;
       set({
         stores: data.stores || [],
@@ -131,12 +125,8 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
   fetchStoreData: async (storeId: string) => {
     set({ loading: true, error: null });
     try {
-      const timeRange = get().timeRange;
       const response = await axios.get(
-        `${API_URL}/api/dashboard/store/${storeId}`,
-        {
-          params: { time_range: timeRange },
-        }
+        `${API_URL}/api/dashboard/store/${storeId}`
       );
       const data = response.data;
       set({
@@ -176,17 +166,6 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
   },
 
   setSelectedStore: (store: Store | null) => set({ selectedStore: store }),
-
-  setTimeRange: (range: string) => {
-    set({ timeRange: range });
-    // Refetch data with new time range
-    const state = get();
-    if (state.selectedStore) {
-      state.fetchStoreData(state.selectedStore.id);
-    } else {
-      state.fetchDashboardSummary();
-    }
-  },
 
   clearError: () => set({ error: null }),
 }));

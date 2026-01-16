@@ -178,10 +178,42 @@ This separation mirrors **real production systems**.
 ### Backend Setup
 
 ```bash
-cd backend
+# Navigate to backend directory
+cd Foodlytics/backend
+
+# Create virtual environment (recommended)
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
+```
+
+#### Configure Environment Variables
+
+Create a `.env` file in the `backend/` directory:
+
+```env
+# Redis Configuration (Upstash)
+# Get these from your Upstash dashboard: https://console.upstash.com/
+REDIS_URL=rediss://default:YOUR_TOKEN@YOUR_ENDPOINT.upstash.io:6379
+
+# Cache Configuration (in seconds)
+CACHE_TTL=300           # Default TTL: 5 minutes
+CACHE_TTL_SHORT=60      # Short TTL: 1 minute (for orders)
+CACHE_TTL_LONG=600      # Long TTL: 10 minutes (for stores)
+
+# API Configuration
+MOCK_API_URL=https://assessment-6xdhr.ondigitalocean.app
+```
+
+```bash
+# Start the backend server
 uvicorn app.main:app --reload --port 8000
 ```
 
@@ -196,8 +228,13 @@ http://localhost:8000
 ### Frontend Setup
 
 ```bash
-cd frontend
+# Navigate to frontend directory
+cd Foodlytics/frontend
+
+# Install dependencies
 npm install
+
+# Start development server
 npm start
 ```
 

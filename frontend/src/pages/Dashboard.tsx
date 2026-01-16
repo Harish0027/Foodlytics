@@ -20,7 +20,6 @@ import { StoreList } from "../components/StoreList";
 import { OrdersTable } from "../components/OrdersTable";
 import { StatusChart } from "../components/StatusChart";
 import { RevenueChart } from "../components/RevenueChart";
-import { TimeRangeSelector } from "../components/TimeRangeSelector";
 import { OrderStatusPie } from "../components/OrderStatusPie";
 import { useDashboardStore } from "../store/dashboardStore";
 
@@ -33,21 +32,19 @@ export const Dashboard: React.FC = () => {
     summary,
     selectedStore,
     storeOrders,
-    timeRange,
     loading,
     error,
     fetchDashboardSummary,
     fetchStoreData,
     fetchStoreOrders,
     setSelectedStore,
-    setTimeRange,
     clearError,
   } = useDashboardStore();
 
   // Fetch dashboard data on mount
   useEffect(() => {
     fetchDashboardSummary();
-  }, [fetchDashboardSummary, timeRange]);
+  }, [fetchDashboardSummary]);
 
   // Handle store selection
   const handleSelectStore = (store: any) => {
@@ -199,13 +196,6 @@ export const Dashboard: React.FC = () => {
 
       {/* Summary Cards */}
       <SummaryCards summary={summary} />
-
-      {/* Time Range Selector */}
-      <Box
-        sx={{ mt: { xs: 2.5, sm: 3, md: 4 }, mb: { xs: 2.5, sm: 3, md: 4 } }}
-      >
-        <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
-      </Box>
 
       {/* Analytics Section */}
       {summary && summary.total_orders > 0 && (
